@@ -1,0 +1,1336 @@
+@extends('layouts.app')
+
+@section('navTheme')
+{{ 'dark' }}@endsection
+
+@section('logoFileName')
+{{ URL::asset('/images/Black Logo.png') }}@endsection
+
+
+@section('content')
+
+   <!-- Button styling -->
+    <style>
+        .button-container a,
+        .button-container button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button-container a {
+            background-color: #CE3232;
+            color: white;
+        }
+
+        .button-container a:hover {
+            background-color: #dfe1e2;
+            color: black;
+            transition-duration: 0.8s;
+        }
+
+        .button-container button {
+            background-color: #CE3232;
+            color: white;
+        }
+
+        .button-container button:hover {
+            background-color: #dfe1e2;
+            color: black;
+            transition-duration: 0.8s;
+
+            
+        }
+
+        .bold-divider {
+            font-weight: bold; /* Make text bold */
+            height: 2px; /* Increase height to make the line bolder */
+            background-color: darkorange; /* Ensure the line is visible */
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+
+        }
+    </style>
+
+
+<style>
+.menu-title {
+    text-align: center;
+    font-style: italic;
+    color: black;
+    font-size: 30px;
+}
+
+.bg-custom-color {
+    background-color: #CE3232;
+}
+
+.bg-custom-color:hover {
+    background-color: #dfe1e2;
+    transition-duration: 0.8s;
+}
+
+.text-custom {
+    color: white;
+}
+
+.text-custom:hover {
+    color: black;
+    transition-duration: 0.8s;
+}
+
+.gradient-hr {
+    border: none; /* Remove default border */
+    height: 2px; /* Adjust height as needed */
+    background: linear-gradient(to right, #000000, #FF8C00, #dc3545); /* Black to dark orange to danger red */
+    border-radius: 8px;
+}
+
+.border-gradient {
+    border-image: linear-gradient(to right, black, #FF8C00, #dc3545)1;
+}
+
+.gradient-bg {
+    background: linear-gradient(to right, rgba(0, 0, 0, 1) 80%, rgba(169, 169, 169, 1) 100%);
+    padding: 0.1rem; /* Thin padding */
+}
+
+.small-option {
+    font-size: 12px; /* Adjust size here */
+  }
+  .policy-section {
+            background-color: #f9f9f9;
+            border-left: 4px solid #FF4500;
+            border-radius: 6px;
+            margin-top: 10px;
+            padding: 15px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .policy-text {
+            font-size: 0.875em;  /* Smaller text */
+            color: #6c757d;
+        }
+
+        .policy-checkbox {
+            font-size: 0.9em;  /* Slightly smaller font size */
+            color: #333;
+        }
+
+        .policy-checkbox a {
+            color: #FF4500;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .policy-checkbox a:hover {
+            text-decoration: underline;
+        }
+
+        .policy-section h6 {
+            color: #FF4500;
+            font-weight: bold;
+            font-size: 1em;  /* Slightly smaller header */
+        }
+
+        .policy-text.small {
+            font-size: 0.85em;  /* Even smaller text for the body */
+        }
+
+        .invalid-feedback {
+            color: #dc3545;
+            font-size: 0.8em;  /* Smaller error text */
+            margin-top: 5px;
+        }
+
+        .form-check-input {
+            width: 1.25em;
+            height: 1.25em;
+        }
+</style>
+
+<style>
+    .color-change {
+        animation: colorChange 5s ease-out infinite;
+    }
+
+    @keyframes colorChange {
+        0% {
+            background-color: rgba(0, 0, 0, 0); /* Black */
+        }
+        50% {
+            background-color: rgba(255, 165, 0, 0.6); /* Orange */
+        }
+        100% {
+            background-color: rgba(255, 0, 0, 0.4); /* Red */
+        }
+    }
+
+    .half {
+        animation: fadeInColorChange 5s ease-out infinite;
+    }
+
+    @keyframes fadeInColorChange {
+        0% {
+            opacity: 1;
+            background-color: rgba(255, 105, 97, 0.4); /* Light Red */
+        }
+        50% {
+            opacity: 1;
+            background-color: rgba(255, 165, 0, 0.6); /* Orange */
+        }
+        100% {
+            opacity: 1;
+            background-color: rgba(144, 238, 144, 0.8); /* Light Green */
+        }
+    }
+</style>
+
+  
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+    <div class="container w-full  mx-auto">
+    <table class="table table-hover">
+        <div class="col-12 pt-3 shadow rounded bg-white ">
+            <h2 class="d-flex justify-content-center menu-title">MAKE RESERVATION</h2>
+            <br>
+        </div>
+    </table>
+    <hr class="my-4 gradient-hr">
+    <div class="container mx-auto py-6">
+  <div class="row">
+    <!-- Left Column: Form -->
+
+    <div class="col-lg-6 col-12 mb-3  position-relative">
+         
+                <div class="flex-1 h-full max-w-4xl mx-auto bg-white rounded-lg shadow-xl">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="flex-1">
+                         
+                    <div class="flex items-center justify-center p-6">
+                        <div class="w-full">
+                        <div class="w-full bg-gray-100 rounded-full border-1 border-transparent border-gradient">
+                                <div class="w-40 p-1 text-xs font-medium leading-none text-center rounded-full">
+                                    Step 2
+                                </div>
+                            </div>
+                            <br>
+
+                            <form method="POST" action="{{ route('reservations.store.step.two') }}">
+                                @csrf
+                                <hr class="my-1 gradient-hr">
+                                <span class=" py-1 px-2 text-xs font-medium tracking-wider text-center text-gray-700 bg-gray-200 color-change alert-info">
+                                            <strong>&nbsp;&nbsp;For what event?&nbsp;&nbsp;</strong>
+                                </span>
+                                <div class="sm:col-span-6 mb-1">
+    <div class="mt-1 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+        <svg class="w-6 h-6 mr-2" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+        <span class="input-group-text py-1 px-1 rounded-md gradient-bg">
+        &nbsp;&nbsp;<i class="fa fa-th-large text-white" style="font-size: 25px;"></i>&nbsp;&nbsp;&nbsp;
+            <div class="mt-1">
+                <select id="service_id" name="service_id" style="width: 160px;"
+                        class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-xs leading-normal transition duration-150 ease-in-out sm:text-xs sm:leading-5"
+                        onchange="showThemeSection()">
+                    <option value="" disabled selected>Select Event</option>
+                    @foreach ($services as $service)
+                        <option value="{{ $service->id }}" {{ $service->id == $reservation->service_id ? 'selected' : '' }}>
+                            {{ $service->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </span>
+    </div>
+    @error('service_id')
+        <div class="text-sm text-red-400">{{ $message }}</div>
+    @enderror
+
+    <div id="themeSection" class="hidden mt-3 p-2 bg-yellow-100 border-l-4 border-yellow-500">
+        <div class="mb-3">
+            <label for="theme_type" class="block text-sm font-medium text-gray-700">Theme Type:</label>
+            <select id="theme_type" name="theme_type" 
+                    class="block w-full bg-white border border-gray-400 rounded-md py-2 px-3 text-xs"
+                    onchange="updateThemeColors()">
+                <option value="" disabled selected>Select Theme Type</option>
+                <option value="metallic">Metallic</option>
+                <option value="pastel">Pastel</option>
+                <option value="royal">Royal</option>
+                <option value="floral">Floral</option>
+                <option value="neon">Neon</option>
+                <option value="vintage">Vintage</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
+
+        <!-- Theme Colors Section -->
+        <div id="colorSection" class="hidden">
+            <p class="text-xs font-semibold">Colors:</p>
+            <div class="mt-2 flex items-center">
+                <label for="main_color" class="block text-xs w-1/4">Main Color:</label>
+                <select id="main_color" name="main_color" 
+                        class="block w-3/4 bg-white border border-gray-400 rounded-md py-2 px-3 text-xs"
+                        onchange="updateColorPreview('main_color', 'main_color_preview')">
+                    <option value="" disabled selected>Select Main Color</option>
+                </select>
+                <div id="main_color_preview" class="ml-3 h-6 w-6 border border-gray-400 rounded"></div>
+            </div>
+            <div class="mt-2 flex items-center">
+                <label for="sub_color" class="block text-xs w-1/4">Sub Color:</label>
+                <select id="sub_color" name="sub_color" 
+                        class="block w-3/4 bg-white border border-gray-400 rounded-md py-2 px-3 text-xs"
+                        onchange="updateColorPreview('sub_color', 'sub_color_preview')">
+                    <option value="" disabled selected>Select Sub Color</option>
+                </select>
+                <div id="sub_color_preview" class="ml-3 h-6 w-6 border border-gray-400 rounded"></div>
+            </div>
+        </div>
+
+        <!-- Custom Theme Options -->
+        <div id="customSection" class="hidden">
+            <p class="text-xs font-semibold">Custom Colors:</p>
+            <div class="mt-2">
+                <label for="custom_main_color" class="block text-xs">Main Color:</label>
+                <input type="text" id="custom_main_color" name="custom_main_color" 
+                       placeholder="Enter main color (e.g., Pink, Blue)" 
+                       class="block w-full bg-white border border-gray-400 rounded-md py-2 px-3 text-xs"
+                       oninput="updateCustomColorPreview('custom_main_color', 'main_color_preview')">
+            </div>
+            <div class="mt-2">
+                <label for="custom_sub_color" class="block text-xs">Sub Color:</label>
+                <input type="text" id="custom_sub_color" name="custom_sub_color" 
+                       placeholder="Enter sub color (e.g., White, Silver)" 
+                       class="block w-full bg-white border border-gray-400 rounded-md py-2 px-3 text-xs"
+                       oninput="updateCustomColorPreview('custom_sub_color', 'sub_color_preview')">
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="mt-3">
+            <label for="theme_comments" class="block text-xs font-semibold">Additional Comments:</label>
+            <textarea id="theme_comments" name="theme_comments" 
+                      placeholder="Enter detailed theme preferences (e.g., Barbie themed)" 
+                      class="block w-full bg-white border border-gray-400 rounded-md py-2 px-3 text-xs"></textarea>
+        </div>
+    </div>
+    <div class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+        <svg class="w-6 h-6 mr-2" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M9 21h6a2 2 0 002-2v-4a8 8 0 10-8 0v4a2 2 0 002 2z"></path>
+        </svg>
+        <span class="text-xs">
+            For more information about our catering events, please check our 
+            <a href="{{ route('cservices.index') }}" class="text-blue-500 underline" style="color: #FF8C00;">events</a>. 
+        </span>
+    </div>
+</div>
+
+<script>
+function showThemeSection() {
+    const themeSection = document.getElementById('themeSection');
+    const serviceId = document.getElementById('service_id').value;
+
+    if (serviceId) {
+        themeSection.classList.remove('hidden');
+    } else {
+        themeSection.classList.add('hidden');
+    }
+}
+
+function updateThemeColors() {
+    const themeType = document.getElementById('theme_type').value;
+    const mainColorSelect = document.getElementById('main_color');
+    const subColorSelect = document.getElementById('sub_color');
+    const colorSection = document.getElementById('colorSection');
+    const customSection = document.getElementById('customSection');
+
+    mainColorSelect.innerHTML = '<option value="" disabled selected>Select Main Color</option>';
+    subColorSelect.innerHTML = '<option value="" disabled selected>Select Sub Color</option>';
+
+    const themes = {
+        metallic: { main: {'Silver': '#C0C0C0','Platinum': '#E5E4E2','Chrome': '#D4D4D4','Steel': '#B0C4DE','Graphite': '#2F4F4F'}, sub: {'Black': '#000000','Gold': '#FFD700','Bronze': '#CD7F32','Copper': '#B87333','Rose Gold': '#B76E79'}},
+        pastel: { main: { 'Peach': '#FFDAB9', 'Mint Green': '#98FF98', 'Lavender': '#b56edc' }, sub: { 'Cream': '#FFFDD0', 'Soft Pink': '#FFB6C1', 'Sky Blue': '#87CEEB' } },
+        royal: { main: { 'Royal Blue': '#4169E1', 'Emerald Green': '#50C878', 'Deep Purple': '#673AB7' }, sub: { 'Gold': '#FFD700', 'Silver': '#C0C0C0', 'Crimson': '#DC143C' } },
+        floral: { main: { 'Rose': '#FF007F', 'Daisy Yellow': '#FFF700', 'Lavender': '#b56edc' }, sub: { 'Mint Green': '#98FF98', 'Cream': '#FFFDD0', 'Blush': '#DE5D83' } },
+        neon: { main: { 'Neon Pink': '#FF6EC7', 'Neon Green': '#39FF14', 'Neon Blue': '#1F51FF' }, sub: { 'Black': '#000000', 'White': '#FFFFFF', 'Gray': '#808080' } },
+        vintage: { main: { 'Beige': '#F5F5DC', 'Olive Green': '#808000', 'Rust': '#B7410E' }, sub: { 'Gold': '#FFD700', 'Brown': '#964B00', 'Cream': '#FFFDD0' } },
+    };
+
+    if (themeType === 'custom') {
+        colorSection.classList.add('hidden');
+        customSection.classList.remove('hidden');
+    } else if (themes[themeType]) {
+        colorSection.classList.remove('hidden');
+        customSection.classList.add('hidden');
+
+        for (const [colorName, hexCode] of Object.entries(themes[themeType].main)) {
+            const option = document.createElement('option');
+            option.value = hexCode;
+            option.textContent = colorName;
+            mainColorSelect.appendChild(option);
+        }
+
+        for (const [colorName, hexCode] of Object.entries(themes[themeType].sub)) {
+            const option = document.createElement('option');
+            option.value = hexCode;
+            option.textContent = colorName;
+            subColorSelect.appendChild(option);
+        }
+    } else {
+        colorSection.classList.add('hidden');
+        customSection.classList.add('hidden');
+    }
+}
+
+function updateColorPreview(selectId, previewId) {
+    const selectedColor = document.getElementById(selectId).value;
+    const previewBox = document.getElementById(previewId);
+
+    if (selectedColor) {
+        previewBox.style.backgroundColor = selectedColor;
+    } else {
+        previewBox.style.backgroundColor = 'transparent';
+    }
+}
+
+function updateCustomColorPreview(inputId, previewId) {
+    const customColor = document.getElementById(inputId).value;
+    const previewBox = document.getElementById(previewId);
+
+    if (customColor) {
+        previewBox.style.backgroundColor = customColor;
+    } else {
+        previewBox.style.backgroundColor = 'transparent';
+    }
+}
+</script>
+
+
+
+
+                                <!--div class="dropdown-divider bold-divider gradient-hr"></div-->
+                                <br>
+                                <hr class="my-1 gradient-hr">
+                                <span class=" py-1 px-2 text-xs font-medium tracking-wider text-center text-gray-700 bg-gray-200 color-change alert-info">
+                                            <strong>&nbsp;&nbsp;Catering Options&nbsp;&nbsp;</strong>
+                                </span>
+
+                                <div class="sm:col-span-6 pt-10 mb-1">
+                                    <div class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+                                        <svg class="w-6 h-6 mr-2" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+                                    <!--label for="cateringoption_id" class="py-1 px-2 text-xs block text-sm font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                            Catering Options -->
+                                            <span class="input-group-text py-1 px-1 rounded-md gradient-bg ">&nbsp;&nbsp;<i class="fa fa-list-alt text-white" style="font-size: 25px;">&nbsp;&nbsp;</i>
+                                                <div class="mt-1">
+                                                    <select id="cateringoption_id" name="cateringoption_id" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-xs leading-normal transition duration-150 ease-in-out sm:text-xs sm:leading-4">
+                                                        <option class="small-option" value="" disabled selected>Select Types</option>
+                                                        @foreach ($cateringoptions as $cateringoption)
+                                                        <option value="{{ $cateringoption->id }}" 
+                                                            {{ $cateringoption->name == 'Equipment Rental' ? 'data-eq-rental="true"' : '' }} 
+                                                            {{ $cateringoption->name == 'Full Catering' ? 'data-complete-catering="true"' : '' }} 
+                                                            {{ $cateringoption->name == 'Service-Only Catering' ? 'data-service-only-catering="true"' : '' }}>
+                                                            {{ $cateringoption->name }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    @error('cateringoption_id')
+                                        <div class="text-sm text-red-400">{{ $message }}</div>
+                                    @enderror
+
+                                    <div class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+                                        <svg class="w-6 h-6 mr-2" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M9 21h6a2 2 0 002-2v-4a8 8 0 10-8 0v4a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span class="text-xs">
+                                            For more information about our catering options, please check our 
+                                            <a href="{{ route('options.index') }}" class="text-blue-500 underline" style="color: #FF8C00;">service types</a>.
+                                        </span>
+                                    </div>
+
+                                    <div id="complete-catering-message" class="mt-0 hidden">
+                                        <hr id="utensils-hr1" class="my-1 gradient-hr hidden">
+                                        <span id="utensils-complete" class="hidden py-1 px-2 text-xs font-medium tracking-wider text-center text-gray-700 bg-gray-200 half alert-info">
+                                        <strong>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 inline mr-1 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l4 4L19 7" />
+                                            </svg>
+                                            &nbsp;&nbsp;Full Catering&nbsp;&nbsp;
+                                        </strong>
+                                        </span>
+                                        <div id="utensils-info1" class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center hidden">
+                                            <svg class="mr-1" style="color: red; width: 40px; height: 40px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M9.93 17h4.14c.72 0 1.29-.58 1.29-1.29l.73-8.07c.09-1-.74-1.81-1.76-1.81H9.2c-1.02 0-1.85.81-1.76 1.81l.73 8.07c.01.71.57 1.29 1.29 1.29z" />
+                                            </svg>
+                                            <span class="text-xs">
+                                            Our team will contact you once your reservation has been approved. 😊
+                                            </span>
+                                        </div>
+
+                                    <hr class="my-1 gradient-hr">
+                                    
+                                    <span class=" py-1 px-2 text-xs font-medium tracking-wider text-center text-gray-700 bg-gray-200 half alert-info">
+                                                <strong>&nbsp;&nbsp;Our Available Packages&nbsp;&nbsp;</strong>
+                                    </span>
+                                    <div class="sm:col-span-6 mb-1">
+                                    <div class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+                                    <svg class="w-6 h-6 mr-2" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+                                    <span class="input-group-text py-1 px-1 rounded-md gradient-bg ">&nbsp;&nbsp;<i class="fa fa-box text-white" style="font-size: 25px;">&nbsp;&nbsp;</i>
+                                        <div class="mt-1">
+                                            <select id="package_id" name="package_id" style="width: auto;" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-xs leading-normal transition duration-150 ease-in-out sm:text-xs sm:leading-5">
+                                            <option class="small-option" value="" disabled selected>Select Package</option>
+                                                    @foreach ($packages as $package)
+                                                        <option value="{{ $package->id }}"
+                                                                {{ $package->id == $reservation->package_id ? 'selected' : '' }}>
+                                                            {{ $package->name }} ({{ $package->guest_number }} <span style="font-size: 20px;">👥</span>)
+                                                        </option>
+                                                    @endforeach
+                                                <option class="small-option" value="">Other</option>
+                                                <!--option value="">Other</option-->
+                                            </select>
+                                        </div>
+                                        @error('package_id')
+                                            <div class="text-sm text-red-400">{{ $message }}</div>
+                                        @enderror
+                                        </span>
+                                        </label>
+                                        </div>
+
+                                        <div class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+                                            <svg class="w-6 h-6 mr-2" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M9 21h6a2 2 0 002-2v-4a8 8 0 10-8 0v4a2 2 0 002 2z"></path>
+                                            </svg>
+                                            <span class="text-xs">
+                                                        Please choose the best package for your choosen 
+                                                        <a href="{{ route('cservices.index') }}" class="text-blue-500 underline" style="color: #FF8C00;">events</a>. 
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    </div>
+
+                                    <div id="service-only-message" class="mt-0 hidden">
+                                        <hr id="utensils-hr2" class="my-1 gradient-hr hidden">
+                                        <span id="utensils-service" class="hidden py-1 px-2 text-xs font-medium tracking-wider text-center text-gray-700 bg-gray-200 half alert-info">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 inline mr-1 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l4 4L19 7" />
+                                            </svg>
+                                            <strong>&nbsp;&nbsp;Service-Only Catering&nbsp;&nbsp;</strong>
+                                        </span>
+                                        <div id="utensils-info2" class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center hidden">
+                                            <svg class="mr-1" style="color: red; width: 40px; height: 40px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M9.93 17h4.14c.72 0 1.29-.58 1.29-1.29l.73-8.07c.09-1-.74-1.81-1.76-1.81H9.2c-1.02 0-1.85.81-1.76 1.81l.73 8.07c.01.71.57 1.29 1.29 1.29z" />
+                                            </svg>
+                                            <span class="text-xs">
+                                            Our team will contact you once your reservation has been approved. 😊
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div id="utensils-list" class="mt-1">
+                                    <hr id="utensils-hr3" class="my-1 gradient-hr hidden">
+                                    <span id="utensils-Erental" class="hidden py-1 px-2 text-xs font-medium tracking-wider text-center text-gray-700 bg-gray-200 half alert-info">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 inline mr-1 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12l4 4L19 7" />
+                                        </svg>
+                                        <strong>&nbsp;&nbsp;Equipment Rental&nbsp;&nbsp;</strong>
+                                    </span>
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full border border-gray-300" id="utensils-table">
+                                        <thead id="utensils-table-header" class="hidden">
+                                        <tr>
+                                    <th scope="col" class=" px-1 text-sm font-small tracking-tight text-left text-gray-700 uppercase bg-gray-200">
+                                        <strong class="badge text-black px-1  text-[10px]">Supplies</strong>
+                                    </th>
+                                    <th scope="col" class=" px-1 text-xs font-xs tracking-tight text-center text-gray-700 uppercase bg-gray-200">
+                                        <strong class="badge bg-success px-1  text-[9px]">&nbsp;&nbsp;</strong>
+                                    </th>
+                                    <th scope="col" class=" px-1 text-xs font-xs tracking-tight text-center text-gray-700 uppercase bg-gray-200">
+                                        <strong class="badge bg-danger px-1  text-[9px]">&nbsp;&nbsp;</strong>
+                                    </th>
+                                    <th scope="col" class=" px-1 text-xs font-xs tracking-tight text-center text-gray-700 uppercase bg-gray-200">
+                                        <strong class="badge bg-warning px-1 text-black text-[9px]">&nbsp;&nbsp;</strong>
+                                    </th>
+                                    <th scope="col" class=" px-1 text-xs font-xs tracking-tight text-center text-gray-700 uppercase bg-gray-200">
+                                        <strong class="badge bg-warning px-1 text-black text-[9px]">&nbsp;&nbsp;</strong>
+                                    </th>
+                                </tr>
+
+                                        </thead>
+                                        <tbody id="utensils-table-body" class="bg-white divide-y divide-gray-200 hidden">
+                                        @foreach($inventories->where('status', '!=', 'Unavailable') as $utensil)
+                                        <tr class="hover:bg-gray-100 utensil-row" data-quantity="{{ $utensil->quantity }}">
+                                            <td class="px-0.5 text-xs font-medium tracking-wider text-left text-gray-700">
+                                                <input type="checkbox" class="utensil-checkbox ml-1" 
+                                                    data-name="{{ $utensil->name }}" 
+                                                    data-price="{{ $utensil->price }}" 
+                                                    data-quantity="{{ $utensil->quantity }}" 
+                                                    name="utensils[{{ $utensil->id }}][selected]"
+                                                    @if ($utensil->quantity <= 0) disabled @endif>&nbsp;
+                                                <span class="utensil-name">{{ $utensil->name }}</span>
+                                            </td>
+                                            <td class="px-0.5 text-xs font-medium tracking-wider text-center text-gray-700">
+                                                @if ($utensil->quantity <= 0)
+                                                    <span class="badge bg-danger">Out of Stock</span>
+                                                @else
+                                                    {{ $utensil->quantity }}
+                                                @endif
+                                            </td>
+                                            <td class="px-0.5 text-xs font-medium tracking-wider text-center text-gray-700">
+                                                ₱{{ number_format($utensil->price, 2) }}
+                                            </td>
+                                            <td class="px-0.5 text-xs font-xs tracking-wider text-center text-gray-700">
+                                            <input type="number" 
+                                                name="utensils[{{ $utensil->id }}][quantity]" 
+                                                class="utensil-quantity-input number-[14px] w-16 h-8 px-1 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white" 
+                                                data-price="{{ $utensil->price }}" 
+                                                data-name="{{ $utensil->name }}" 
+                                                min="0" 
+                                                value="0" 
+                                                disabled>
+                                            </td>
+                                            <td class="px-0.5 text-xs font-medium tracking-wider text-center text-gray-700 utensil-total-price" 
+                                                data-name="{{ $utensil->name }}">
+                                                ₱0
+                                            </td>
+                                        </tr>
+                                        @endforeach
+
+
+                                        <style>
+                                            .utensil-quantity-input {
+                                            font-size: 9px;  /* Ensure the text size is small */
+                                            padding-left: 0.25rem;  /* Adds a bit of space on the left */
+                                            padding-right: 0.25rem;  /* Adds space on the right */
+                                        }
+
+                                        .utensil-quantity-input:disabled {
+                                            background-color: #f0f0f0;  /* Change background color when disabled */
+                                            cursor: not-allowed;  /* Change cursor when input is disabled */
+                                        }
+
+                                            /* Amazon-like out-of-stock row styling */
+                                            .utensil-row[data-quantity=""] {
+                                                background-color: #f1f1f1;  /* Light gray background */
+                                                color: #ccc;  /* Dim text color */
+                                                opacity: 0.6; /* Dim the entire row */
+                                                pointer-events: none; /* Disable interactions */
+                                            }
+
+                                            /* Keep the "Out of Stock" badge clear and visible */
+                                            .utensil-row[data-quantity=""] .badge.bg-danger {
+                                                color: #f44336;  /* Red text color */
+                                                font-weight: bold;
+                                                z-index: 2;  /* Ensure the badge stays on top of the blurred row */
+                                                position: relative;
+                                                filter: none; /* Remove blur from badge */
+                                            }
+
+                                            /* Ensure the text remains readable (e.g., name, price) */
+                                            .utensil-row[data-quantity="0"] .utensil-name,
+                                            .utensil-row[data-quantity="0"] .utensil-total-price {
+                                                color: #ccc;  /* Dimmed color */
+                                                z-index: 2; /* Ensure the text stays on top */
+                                                filter: none; /* No blur effect on text */
+                                            }
+
+                                            /* Disable the input fields (checkbox and quantity input) */
+                                            .utensil-row[data-quantity="0"] .utensil-checkbox,
+                                            .utensil-row[data-quantity="0"] .utensil-quantity-input {
+                                                pointer-events: none; /* Disable interaction */
+                                                opacity: 0.5; /* Dimmed appearance */
+                                            }
+
+                                            /* Optional: Add a hover effect for available items */
+                                            .utensil-row:not([data-quantity="0"]):hover {
+                                                background-color: #f9f9f9; /* Slight highlight on hover for available items */
+                                            }
+                                        </style>
+
+                                        <script>
+                                            // JavaScript to handle the visual appearance of out-of-stock items
+                                            document.querySelectorAll('.utensil-row').forEach(row => {
+                                                const quantity = parseInt(row.dataset.quantity);
+                                                if (quantity <= 0) {
+                                                    row.classList.add('out-of-stock');  // Add 'out-of-stock' class for additional styling if needed
+                                                }
+                                            });
+                                        </script>
+
+
+                                        </tbody>
+                                        <thead id="utensils-table-footer" class="hidden">
+                                        <tr>
+                                    <th scope="col" class=" px-1 text-xs font-xs tracking-tight text-left text-gray-700 uppercase bg-gray-200">
+                                        <strong class="badge text-black px-1  text-[10px]"></strong>
+                                    </th>
+                                    <th scope="col" class=" px-1 text-xs font-xs tracking-tight text-center text-gray-700 uppercase bg-gray-200">
+                                        <strong class="badge bg-success px-1  text-[9px]"></strong>
+                                    </th>
+                                    <th scope="col" class=" px-1 text-xs font-xs tracking-tight text-center text-gray-700 uppercase bg-gray-200">
+                                        <strong class="badge bg-danger px-1  text-[9px]"></strong>
+                                    </th>
+                                    <th scope="col" class=" px-1 text-sm font-small tracking-tight text-center text-gray-700 uppercase bg-gray-200">
+                                        <strong class="badge bg-approved px-1 text-black text-[9px]">Total :</strong>
+                                    </th>
+                                    <th scope="col" class=" px-1 text-xs font-xs tracking-tight text-center text-gray-700 uppercase bg-gray-200">
+                                        <strong id="grand-total-display" class=" px-0.5 text-xs font-medium tracking-wider text-center text-gray-700">₱ 0</strong>
+                                    </th>
+                                </tr>
+
+                                        </thead>
+                                    </table>
+                                </div>
+                                    <style>
+                                    @media (max-width: 640px) {
+                                        #utensils-table {
+                                            font-size: 0.75rem; /* Smaller font for mobile */
+                                        }
+
+                                        #utensils-table th, #utensils-table td {
+                                            padding: 0.5rem; /* Smaller padding */
+                                        }
+
+                                        .badge {
+                                            font-size: 0.75rem; /* Smaller badges */
+                                        }
+
+                                        .utensil-checkbox {
+                                            width: 60%;
+                                            height: 100%;
+                                            padding: 0.30rem;
+                                        }
+
+                                        .utensil-quantity-input {
+                                            width: 70%;
+                                            padding: 0.20rem;
+                                        }
+
+                                        .utensil-total-price {
+                                            font-size: 0.75rem; /* Smaller total price font */
+                                        }
+                                    }
+
+                                    @media (max-width: 100px) {
+                                        .utensil-quantity-input {
+                                            max-width: 100px;
+                                        }
+                                    }
+                                </style>
+
+                                    <div id="utensils-info3" class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center hidden">
+                                        <svg class="mr-1" style="color: red; width: 40px; height: 40px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M9.93 17h4.14c.72 0 1.29-.58 1.29-1.29l.73-8.07c.09-1-.74-1.81-1.76-1.81H9.2c-1.02 0-1.85.81-1.76 1.81l.73 8.07c.01.71.57 1.29 1.29 1.29z" />
+                                        </svg>
+                                        <!--div id="grand-total-display" class="mt-4 text-lg font-bold">Total: ₱0</div-->
+                                        <span class="text-xs">Our team will reach out to you as soon as possible. 😊</span>
+                                        <span>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    document.getElementById('cateringoption_id').addEventListener('change', function() {
+                                        var cateringOptionId = this.value;
+                                        var selectedOption = this.options[this.selectedIndex];
+
+
+                                        var utensilsBody = document.getElementById('utensils-table-body');
+                                        var utensilsTable = document.getElementById('utensils-table');
+                                        var utensilsHeader = document.getElementById('utensils-table-header');
+                                        var utensilsFooter = document.getElementById('utensils-table-footer');
+                                        var utensilsInfo1 = document.getElementById('utensils-info1');
+                                        var utensilsHr1 = document.getElementById('utensils-hr1');
+                                        var utensilsInfo2 = document.getElementById('utensils-info2');
+                                        var utensilsHr2 = document.getElementById('utensils-hr2');
+                                        var utensilsInfo3 = document.getElementById('utensils-info3');
+                                        var utensilsHr3 = document.getElementById('utensils-hr3');
+                                        var utensilsErental = document.getElementById('utensils-Erental');
+                                        var utensilsComplete = document.getElementById('utensils-complete');
+                                        var utensilsService = document.getElementById('utensils-service');
+                                        var completeCateringMessage = document.getElementById('complete-catering-message');
+                                        var serviceOnlyMessage = document.getElementById('service-only-message');
+                                        var cod = document.getElementById('cod');
+                                        var fp = document.getElementById('fp');
+                                        var dp = document.getElementById('dp');
+                                        
+
+                                        // Hide all elements by default
+                                        utensilsHeader.classList.add('hidden');
+                                        utensilsFooter.classList.add('hidden');
+                                        utensilsBody.classList.add('hidden');
+                                        utensilsTable.classList.add('hidden');
+                                        utensilsInfo1.classList.add('hidden');
+                                        utensilsHr1.classList.add('hidden');
+                                        utensilsInfo2.classList.add('hidden');
+                                        utensilsHr2.classList.add('hidden');
+                                        utensilsInfo3.classList.add('hidden');
+                                        utensilsHr3.classList.add('hidden');
+                                        utensilsErental.classList.add('hidden');
+                                        completeCateringMessage.classList.add('hidden');
+                                        serviceOnlyMessage.classList.add('hidden');
+                                        cod.classList.add('hidden');
+                                        fp.classList.add('hidden');
+                                        dp.classList.add('hidden');
+                                       
+
+                                        // Show elements based on selected option
+                                        if (selectedOption.dataset.eqRental) {
+                                            // Show utensils table and info for "Equipment Rental"
+                                            utensilsHeader.classList.remove('hidden');
+                                            utensilsFooter.classList.remove('hidden');
+                                            utensilsBody.classList.remove('hidden');
+                                            utensilsTable.classList.remove('hidden');
+                                            utensilsInfo3.classList.remove('hidden');
+                                            utensilsHr3.classList.remove('hidden');
+                                            
+                                            cod.classList.remove('hidden');
+                                            utensilsErental.classList.remove('hidden');
+                                        } else if (selectedOption.dataset.completeCatering) {
+                                            // Show the Full Catering message and respective HR and Span
+                                            completeCateringMessage.classList.remove('hidden');
+                                            utensilsInfo1.classList.remove('hidden');
+                                            utensilsHr1.classList.remove('hidden');
+                                            utensilsComplete.classList.remove('hidden');
+                                            fp.classList.remove('hidden');
+                                            dp.classList.remove('hidden');
+                                        } else if (selectedOption.dataset.serviceOnlyCatering) {
+                                            // Show the Service-only Catering message and respective HR and Span
+                                            serviceOnlyMessage.classList.remove('hidden');
+                                            utensilsInfo2.classList.remove('hidden');
+                                            utensilsHr2.classList.remove('hidden');
+                                            utensilsService.classList.remove('hidden');
+                                            fp.classList.remove('hidden');
+                                            dp.classList.remove('hidden');
+                                        }
+                                    });
+                                    
+                                </script>
+                              <script>
+   function toggleQuantityInput(checkbox) {
+    const quantityInput = document.querySelector(`.utensil-quantity-input[data-name="${checkbox.dataset.name}"]`);
+    const stockQuantity = parseInt(checkbox.dataset.quantity);
+
+    if (checkbox.checked && stockQuantity > 0) {
+        quantityInput.removeAttribute('disabled');
+        quantityInput.setAttribute('max', stockQuantity);
+        if (parseInt(quantityInput.value) === 0) {
+            quantityInput.value = "";
+        }
+    } else {
+        quantityInput.value = "";
+        quantityInput.setAttribute('disabled', 'disabled');
+        quantityInput.removeAttribute('max');
+        updateTotalPrice(quantityInput);
+    }
+    updateGrandTotal();
+}
+
+function updateTotalPrice(input) {
+    const pricePerUnit = parseFloat(input.dataset.price);
+    const quantity = parseInt(input.value) || 0;
+    const totalPrice = pricePerUnit * quantity;
+
+    const utensilTotalPriceCell = document.querySelector(`.utensil-total-price[data-name="${input.dataset.name}"]`);
+    utensilTotalPriceCell.textContent = `₱${totalPrice.toFixed(2)}`;
+
+    updateGrandTotal();
+}
+
+function updateGrandTotal() {
+    let grandTotal = 0;
+
+    document.querySelectorAll('.utensil-checkbox:checked').forEach(checkbox => {
+        const quantityInput = document.querySelector(`.utensil-quantity-input[data-name="${checkbox.dataset.name}"]`);
+        const pricePerUnit = parseFloat(quantityInput.dataset.price);
+        const quantity = parseInt(quantityInput.value) || 0;
+        grandTotal += pricePerUnit * quantity;
+    });
+
+    const grandTotalDisplay = document.getElementById('grand-total-display');
+    if (grandTotalDisplay) {
+        grandTotalDisplay.textContent = `₱ ${grandTotal.toFixed(2)}`;
+    }
+}
+
+function validateQuantityInput(input) {
+    const stockQuantity = parseInt(input.getAttribute('max'));
+    let value = parseInt(input.value) || 0;
+
+    if (value > stockQuantity) {
+        input.value = stockQuantity;
+    }
+    updateTotalPrice(input);
+}
+
+document.querySelectorAll('.utensil-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', () => toggleQuantityInput(checkbox));
+});
+
+document.querySelectorAll('.utensil-quantity-input').forEach(input => {
+    input.setAttribute('disabled', 'disabled'); // Disable inputs by default
+    input.addEventListener('input', () => validateQuantityInput(input));
+});
+</script>
+
+
+
+                                    
+                                </div> 
+                                                              
+                                    <br>
+                                <hr class="my-1 gradient-hr">
+                                <span class="py-1 px-2 text-xs font-medium tracking-wider text-center text-gray-700 bg-gray-200 color-change alert-info">
+                                    <strong>&nbsp;&nbsp;Payment Mode&nbsp;&nbsp;</strong>
+                                </span>
+                                <div class="col-12 mb-1">
+                                    <div class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+                                        <svg class="w-6 h-6 mr-2" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+                                        <span class="input-group-text py-1 px-1 rounded-md gradient-bg ">&nbsp;&nbsp;<i class="fa fa-credit-card text-white" style="font-size: 25px;">&nbsp;&nbsp;</i>
+                                            <select name="payment_status" id="payment_status" style="width: 160px;" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-xs leading-normal transition duration-150 ease-in-out sm:text-xs sm:leading-4" onchange="togglePaymentSelection()">
+                                                <option class="small-option" value="" disabled selected>Select Mode</option>
+                                                <option id="fp" class="hidden" value="Full Payment">Full Payment</option>
+                                                <option id="dp" class="hidden" value="Down Payment">Down Payment</option>
+                                             
+                                                <option id="cod" class="hidden" value="Cash on Delivery">Cash on Delivery</option>
+                                            </select>
+                                        </span>
+                                        @error('payment_status')
+                                        <div class="text-sm text-red-400">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+                                    <svg class="w-6 h-6 mr-2" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M9 21h6a2 2 0 002-2v-4a8 8 0 10-8 0v4a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <span class="text-xs">
+                                       
+                                            We accept half downpayment⚠️
+                                      
+                                    </span>
+                                </div>
+                                <!--hr class="my-1 gradient-hr"-->
+                                <span id="payment-selection-title" style="display: none;">
+                                    <strong class="py-1 px-2 text-xs font-medium tracking-wider text-center text-gray-700 bg-gray-200 half alert-info" >&nbsp;&nbsp;<strong>Payment Selection</strong>&nbsp;&nbsp;</strong>
+                                </span>
+                                <div class="col-12 mb-1" id="payment-selection" style="display: none;">
+                                    <div class="mt-1 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+                                    <svg class="w-6 h-6 mr-2" style="color: #FF8C00;" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
+                                        <span class="input-group-text py-1 px-1 rounded-md gradient-bg ">&nbsp;&nbsp;<!-- GCash Icon -->
+                                                        <i class="fab fa-google-wallet text-white" style="font-size: 25px;"></i>&nbsp;&nbsp;
+                                            <select name="payment_selection" id="payment_selection" style="width: 160px;" class="block w-full appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-xs leading-normal transition duration-150 ease-in-out sm:text-xs sm:leading-4">
+                                                <option class="small-option" value="" disabled selected>Select Payment</option>
+                                                <option value="GCash">GCash</option>
+                                                <option value="Paypal">Paypal</option>
+                                            </select>
+                                        </span>
+                                        @error('payment_selection')
+                                        <div class="text-sm text-red-400">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-0 p-1 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex items-center">
+                                    <svg class="mr-1" style="color: red; width: 40px; height: 40px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M9.93 17h4.14c.72 0 1.29-.58 1.29-1.29l.73-8.07c.09-1-.74-1.81-1.76-1.81H9.2c-1.02 0-1.85.81-1.76 1.81l.73 8.07c.01.71.57 1.29 1.29 1.29z" />
+                                                                            </svg>
+                                        <span class="text-xs">
+                                            Note: You can leave this blank and decide later.😊
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function togglePaymentSelection() {
+                                        const paymentStatus = document.getElementById('payment_status').value;
+                                        const paymentSelection = document.getElementById('payment-selection');
+                                        const paymentSelectionTitle = document.getElementById('payment-selection-title');
+
+                                        // Show or hide the payment selection section based on the selected payment status
+                                        if (paymentStatus === 'Full Payment' || paymentStatus === 'Down Payment' || paymentStatus === 'Pay Online') {
+                                            paymentSelection.style.display = 'block';
+                                            paymentSelectionTitle.style.display = 'block';
+                                        } else {
+                                            paymentSelection.style.display = 'none';
+                                            paymentSelectionTitle.style.display = 'none';
+                                        }
+                                    }
+                                </script>
+
+
+                                        <div class="my-3 dropdown-divider bold-divider gradient-hr"></div>
+                                           <!-- Cancellation/Non-refundable Policy Section -->
+                                           <div class="policy-section">
+                                                <div class="policy-checkbox d-flex align-items-center">
+                                                    <input class="form-check-input @error('agreement') is-invalid @enderror me-2" 
+                                                        type="checkbox" name="agreement" id="agreement" value="1" 
+                                                        {{ old('agreement') ? 'checked' : '' }} required style="transform: scale(0.8);">
+                                                    <label class="form-check-label" for="agreement" style="font-size: 0.700rem;">
+                                                        I agree to the <a href="#policyModal" data-bs-toggle="modal" class="text-decoration-none" style="font-size: 0.700rem;">cancellation policy and terms of service</a>
+                                                    </label>
+                                                </div>
+
+
+                                                <!--p class="policy-text">Please note that once your order is placed, it is non-refundable. Kindly ensure that you are certain about your order before proceeding.</p-->
+                                                @error('agreement')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                        <!-- Cancellation Policy Modal -->
+                                        <div class="modal fade" id="policyModal" tabindex="-1" aria-labelledby="policyModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                                <div class="modal-content rounded-3 shadow-lg border-0">
+
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header bg-warning text-black rounded-top">
+                                                        <h5 class="modal-title" id="policyModalLabel">
+                                                            <i class="fas fa-info-circle me-2"></i>Cancellation Policy
+                                                        </h5>
+                                                        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"> <span aria-hidden="true"><b>&times;</b></span></button>
+                                                    </div>
+
+                                                    <!-- Modal Body -->
+                                                    <div class="modal-body px-4 py-3">
+                                                        <div class="text-center mb-4">
+                                                            <div class="bg-success text-white rounded-circle mx-auto" style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;">
+                                                                <i class="fas fa-check-circle" style="font-size: 36px;"></i>
+                                                            </div>
+                                                            <h6 class="mt-3 fw-bold text-dark">Important Cancellation Information</h6>
+                                                            <p class="text-muted small">Please take a moment to review our cancellation policy below.</p>
+                                                        </div>
+
+                                                        <div class="policy-details">
+                                                            <ul class="list-unstyled text-start text-sm">
+                                                                <li class="d-flex align-items-start mb-2">
+                                                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                                                    <div><strong>24-Hour Notice:</strong> Cancellations must be made at least 24 hours in advance of the reserved date and time to avoid any charges.</div>
+                                                                </li>
+                                                                <li class="d-flex align-items-start mb-2">
+                                                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                                                    <div><strong>No Refund for Deposits:</strong> Any deposit paid to confirm your reservation is non-refundable but transferable to a future reservation within 6 months of the original booking date.</div>
+                                                                </li>
+                                                                <li class="d-flex align-items-start mb-2">
+                                                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                                                    <div><strong>Late Cancellations:</strong> If you cancel within 24 hours of the reserved date and time, a cancellation fee of 50% of the total booking amount will be applied.</div>
+                                                                </li>
+                                                                <li class="d-flex align-items-start mb-2">
+                                                                    <i class="fas fa-check-circle text-success me-2"></i>
+                                                                    <div><strong>No Show:</strong> If the reservation is not honored and no notice is given, 100% of the total booking amount will be charged.</div>
+                                                                </li>
+                                                            </ul>
+                                                            <p class="small text-muted text-center mt-3">By proceeding, you agree to these terms.</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Modal Footer -->
+                                                    <div class="modal-footer justify-content-center border-top-0">
+                                                        <button type="button" class="btn primary-btn btn-sm" data-bs-dismiss="modal">
+                                                            <i class="fas fa-times-circle me-1"></i>Close
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <script>
+                                                // If you're not using Bootstrap’s JavaScript bundle, manually trigger the modal
+                                                var myModal = new bootstrap.Modal(document.getElementById('policyModal'), {
+                                                    keyboard: false
+                                                });
+                                            </script>
+                                            <br>
+                                            <div class="d-flex flex-wrap align-items-center gap-4">
+                                                <a href="{{ route('reservations.step.one') }}" class="px-2 py-2 text-xs btn btn-custom-color primary-btn flex-shrink-0">Previous</a>
+                                                
+                                              
+                                                <!--div class="flex items-center justify-center p-2 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex-grow min-w-0">
+                                                  
+                                                    <svg class="mr-1" style="color: red; width: 40px; height: 40px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M9.93 17h4.14c.72 0 1.29-.58 1.29-1.29l.73-8.07c.09-1-.74-1.81-1.76-1.81H9.2c-1.02 0-1.85.81-1.76 1.81l.73 8.07c.01.71.57 1.29 1.29 1.29z" />
+                                                    </svg>
+                                              
+                                                    <span class="text-xs">Please ensure all your details are accurate. We will reach out to you promptly once your reservation is approved.</span>
+                                                    <svg class="ml-1" style="color: red; width: 40px; height: 40px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M9.93 17h4.14c.72 0 1.29-.58 1.29-1.29l.73-8.07c.09-1-.74-1.81-1.76-1.81H9.2c-1.02 0-1.85.81-1.76 1.81l.73 8.07c.01.71.57 1.29 1.29 1.29z" />
+                                                    </svg>
+                                                </div-->
+
+                                             
+                                                <button type="submit" class="px-2 py-2 text-xs btn btn-custom-color primary-btn flex-shrink-0 ms-auto">Make Reservation</button>
+                                            </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="best-month" class="col-lg-12 mt-4  col-12 p-4 shadow-lg rounded bg-gradient-light position-relative overflow-hidden" 
+                    style="border: 2px solid #E0E0E0; background: linear-gradient(135deg, #f7f7f7, #fdeaea); transition: transform 0.5s ease-in-out, box-shadow 0.3s ease;">
+                    <div class="icon-overlay animate-spin-slow" style="position: absolute; top: -20px; right: -20px; opacity: 0.1; z-index: 0;">
+                        <img src="{{ URL::asset('/images/book.svg') }}" style="height: 100px; width: 100px;">
+                    </div>
+                    <div class="icon-overlay animate-float" style="position: absolute; top: 10%; left: 42.5%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 0;">
+                        <img src="{{ URL::asset('/images/book.svg') }}" style="height: 100px; width: 100px;">
+                    </div> 
+                    <div class="icon-overlay animate-spin-slow" style="position: absolute; bottom: -20px; left: -20px; opacity: 0.1; z-index: 0;">
+                        <img src="{{ URL::asset('/images/book.svg') }}" style="height: 100px; width: 100px;">
+                    </div>
+                    <h5 class="text-center mb-3 position-relative" style="z-index: 1;">
+                        <img src="{{ URL::asset('/images/menu.svg') }}" style="height: 28px; width: 28px; margin-right: 10px; vertical-align: middle;">
+                        <span style="color: #8B0000; font-weight: bold;">Note</span> 
+                    </h5>
+                    <div class="position-relative glow-on-hover" style="background: #ffffff; padding: 10px; border-radius: 10px; z-index: 1; transition: box-shadow 0.3s ease-in-out;">
+                        <h2 class="my-2 apexcharts-yaxis-title  text-center" style="color: #000000; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0);"> 
+                        <div class="flex items-center p-2 text-sm text-gray-700 bg-yellow-100 border-l-4 border-yellow-500 flex-grow min-w-0">
+                            <svg class="mr-1" style="color: red; width: 40px; height: 40px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M9.93 17h4.14c.72 0 1.29-.58 1.29-1.29l.73-8.07c.09-1-.74-1.81-1.76-1.81H9.2c-1.02 0-1.85.81-1.76 1.81l.73 8.07c.01.71.57 1.29 1.29 1.29z" />
+                            </svg>
+                                                   
+                            <span class="text-xs xs:text-xs md:text-base">We will reach out to you promptly once your reservation is approved.</span>
+                                                    
+                            <svg class="mr-1" style="color: red; width: 40px; height: 40px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M9.93 17h4.14c.72 0 1.29-.58 1.29-1.29l.73-8.07c.09-1-.74-1.81-1.76-1.81H9.2c-1.02 0-1.85.81-1.76 1.81l.73 8.07c.01.71.57 1.29 1.29 1.29z" />
+                            </svg>
+                        </div>
+                        </h2>
+                    </div>
+                    <p class="small text-muted text-center mt-3 position-relative" style="z-index: 1;">Please ensure all your details are accurate.</p>
+                </div>
+        </div>
+
+  <!-- Right Column: Image -->
+  <div class="col-lg-6">
+            <div class="flex items-center justify-center min-h-screen">
+         
+            <div class="position-relative">
+<div id="best-month" class="col-12 p-4 shadow-lg rounded bg-gradient-light position-relative overflow-hidden" 
+         style="border: 2px solid #E0E0E0; background: linear-gradient(135deg, #f7f7f7, #fdeaea); transition: transform 0.5s ease-in-out, box-shadow 0.3s ease;">
+        <div class="icon-overlay animate-spin-slow" style="position: absolute; top: -20px; right: -20px; opacity: 0.1; z-index: 0;">
+            <img src="{{ URL::asset('/images/calendar.svg') }}" style="height: 100px; width: 100px;">
+        </div>
+        <div class="icon-overlay animate-float" style="position: absolute; top: 10%; left: 42.5%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 0;">
+            <img src="{{ URL::asset('/images/calendar.svg') }}" style="height: 100px; width: 100px;">
+        </div> 
+        <div class="icon-overlay animate-spin-slow" style="position: absolute; bottom: -20px; left: -20px; opacity: 0.1; z-index: 0;">
+            <img src="{{ URL::asset('/images/calendar.svg') }}" style="height: 100px; width: 100px;">
+        </div>
+        <h5 class="text-center mb-3 position-relative" style="z-index: 1;">
+            <img src="{{ URL::asset('/images/calendar.svg') }}" style="height: 28px; width: 28px; margin-right: 10px; vertical-align: middle;">
+            <span style="color: #8B0000; font-weight: bold;">Best Month</span> <!-- Dark Red Color -->
+        </h5>
+        <div class="position-relative glow-on-hover" style="background: rgba(255, 255, 255, 0.95); padding: 10px; border-radius: 10px; z-index: 1; transition: box-shadow 0.3s ease-in-out;">
+            <h2 class="my-2 apexcharts-yaxis-title fw-bold text-center pulse" style="color: #8B0000;"> <!-- Dark Red Text -->
+            @if($reservationMonthData)
+                    @php
+                        // Map month numbers to names
+                        $months = [
+                            1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April', 
+                            5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August', 
+                            9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December'
+                        ];
+                        $monthName = $months[$reservationMonthData['month']] ?? 'Unknown';
+                    @endphp
+                    {{ $monthName }}
+                @else
+                    <span style="color: #8B0000;">No Data Available</span> <!-- Dark Red for No Data -->
+                @endif
+            </h2>
+        </div>
+        <p class="small text-muted text-center mt-2 position-relative" style="z-index: 1;">Month with the Most Reservations</p>
+    </div>
+
+    <div id="best-services" class="mt-4 col-12 p-4 shadow-lg rounded bg-gradient-light position-relative overflow-hidden" 
+     style="border: 2px solid #E0E0E0; background: linear-gradient(135deg, #ffe5d4, #fdeaea); transition: transform 0.4s ease-in-out, box-shadow 0.3s ease;">
+    <div class="icon-overlay animate-spin-slow" style="position: absolute; bottom: -35px; left: -20px; opacity: 0.1; z-index: 0;">
+        <img src="{{ asset('/images/White Logo.png') }}" style="height: 150px; width: 150px;">
+    </div>
+    <div class="icon-overlay animate-float" style="position: absolute; top: 1%; right: 80%; transform: translate(-50%, -50%); opacity: 0.1; z-index: 0;">
+        <img src="{{ URL::asset('/images/White Logo.png') }}" style="height: 150px; width: 150px;">
+    </div>
+    <div class="icon-overlay animate-spin-slow" style="position: absolute; top: -20px; right: -25px; opacity: 0.1; z-index: 0;">
+        <img src="{{ asset('/images/White Logo.png') }}" style="height: 150px; width: 150px;">
+    </div>
+    <h5 class="text-center mb-6 position-relative" style="z-index: 1;">
+            <img src="{{ URL::asset('/images/calendar.svg') }}" style="height: 28px; width: 28px; margin-right: 10px; vertical-align: middle;">
+            <span style="color: #8B0000; font-weight: bold;">GiG Cafe</span> <!-- Dark Red Color -->
+        </h5>
+    <!-- Main Image -->
+    <div class="gallery-item" style="position: relative; z-index: 1;">
+        <img src="{{ asset('/images/Restaurant.jpeg') }}" alt="Gallery Image" 
+             style="width: 95%; height: auto; object-fit: cover; border-radius: 15px; margin: 0 auto; display: block;">
+    </div>
+
+    <!-- Small Logo in Corner -->
+    <div class="logo-overlay" style="position: absolute; top: 10px; left: 10px; z-index: 2;">
+        <img src="{{ asset('/images/White Logo.png') }}" alt="Logo" style="height: 50px; width: 50px; border-radius: 50%;">
+    </div>
+    <p class="small text-muted text-center mt-6 position-relative" style="z-index: 1;">ALL IN RESTAURANT IN TOWN</p>
+</div>
+
+    </div>
+
+<style>
+    #best-services:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .icon-overlay {
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .animate-float {
+        animation: float 4s infinite ease-in-out;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .glow-on-hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .glow-on-hover:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .gallery-collage {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .gallery-item img {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item img:hover {
+        transform: scale(1.08);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .pulse {
+        animation: pulseEffect 2s infinite;
+    }
+
+    @keyframes pulseEffect {
+        0%, 100% {
+            transform: scale(1);
+
+        }
+        50% {
+            transform: scale(1.03);
+         
+        }
+    }
+</style>
+<style>
+    #best-month:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .icon-overlay {
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .icon-overlay:hover {
+        transform: rotate(15deg);
+    }
+
+    .animate-spin-slow {
+        animation: spin 20s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .glow-on-hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .glow-on-hover:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .pulse {
+        animation: pulseAnimation 1.5s infinite;
+    }
+
+    @keyframes pulseAnimation {
+        0%, 100% {
+            transform: scale(1);
+           
+        }
+        50% {
+            transform: scale(1.05);
+         
+        }
+    }
+</style>
+        
+    </div>
+</div>
+</div>
+</div>
+<hr class="my-4 gradient-hr">
+@endsection
+
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var serviceDropdown = document.getElementById('cateringoption_id');
+        var serviceDropdown = document.getElementById('service_id');
+        var packageDropdown = document.getElementById('package_id');
+        var packageError = document.getElementById('package-error');
+
+        serviceDropdown.addEventListener('change', function () {
+            var serviceId = this.value;
+
+            // Clear previous options
+            packageDropdown.innerHTML = '';
+
+            // Fetch available packages for the selected service
+            fetch('/fetch-packages/' + serviceId)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        packageError.textContent = data.error;
+                    } else {
+                        // Populate packages dropdown with fetched data
+                        data.packages.forEach(function (package) {
+                            var option = document.createElement('option');
+                            option.value = package.id;
+                            option.text = package.name + ' (' + package.guest_number + ' Guests)';
+                            packageDropdown.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    packageError.textContent = 'Error fetching data.';
+                });
+        });
+    });
+</script>
+@endpush
